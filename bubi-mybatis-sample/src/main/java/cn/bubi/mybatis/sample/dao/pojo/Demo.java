@@ -1,0 +1,47 @@
+package cn.bubi.mybatis.sample.dao.pojo;
+
+import java.io.Serializable;
+
+public class Demo implements Serializable{
+    // 
+    private Long id;
+
+    // 
+    private String name;
+
+    // 
+    private Integer age;
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getAge(){
+        return age;
+    }
+
+    public void setAge(Integer age){
+        this.age = age;
+    }
+
+    @Override
+    public String toString(){
+        return "Demo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
