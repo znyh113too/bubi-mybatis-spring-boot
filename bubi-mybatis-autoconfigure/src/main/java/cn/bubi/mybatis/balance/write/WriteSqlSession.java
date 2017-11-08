@@ -1,6 +1,7 @@
 package cn.bubi.mybatis.balance.write;
 
 import cn.bubi.common.dao.WriteLocal;
+import cn.bubi.mybatis.util.ExceptionUtil;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.Configuration;
@@ -207,7 +208,11 @@ public class WriteSqlSession implements SqlSession{
 
             logger.info("router write datasource url : " + useSqlSession.getDataSource().getUrl());
 
-            return method.invoke(useSqlSession.getSqlSession(), args);
+            try {
+                return method.invoke(useSqlSession.getSqlSession(), args);
+            } catch (Exception e) {
+                throw ExceptionUtil.unwrapThrowable(e);
+            }
         }
 
         private boolean useDefaultSqlSession(){

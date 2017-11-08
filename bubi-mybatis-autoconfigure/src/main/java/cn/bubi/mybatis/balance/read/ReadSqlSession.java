@@ -1,5 +1,6 @@
 package cn.bubi.mybatis.balance.read;
 
+import cn.bubi.mybatis.util.ExceptionUtil;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.Configuration;
@@ -198,6 +199,8 @@ public class ReadSqlSession implements SqlSession{
 
             try (SqlSession sqlSession = innerContent.getSqlSessionFactory().openSession()) {
                 return method.invoke(sqlSession, args);
+            } catch (Exception e) {
+                throw ExceptionUtil.unwrapThrowable(e);
             }
         }
     }

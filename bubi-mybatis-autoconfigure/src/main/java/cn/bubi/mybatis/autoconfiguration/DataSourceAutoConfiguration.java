@@ -9,7 +9,6 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +32,6 @@ public class DataSourceAutoConfiguration{
      * 默认的连接池
      */
     @Bean("writeDataSourceContent")
-    @Primary
     public WriteDataSourceContent writeDataSourceContent(){
         List<DataSourcesProperties.WriteContent> writeContentList = dataSourcesProperties.getWrites();
 
