@@ -57,7 +57,8 @@ public class SimpleEntityHandler<T extends Serializable> implements IEntityHandl
 
 
     private void preWriteDb(){
-        WriteLocal.setWriteDbName(writeToDb.value());
+        if (writeToDb != null)
+            WriteLocal.setWriteDbName(writeToDb.value());
     }
 
     // -----------------------------------------------------------------------
