@@ -3,6 +3,8 @@ package cn.bubi.common.dao;
 /**
  * @author xiezhengchao@bubi.cn
  * @since 17/11/8 下午5:05.
+ * 为了简化先通过标记的方式路由，后续有精力可以做成在beanRegister时动态设置dataAccess
+ * 这样针对不同handle直接指定对应的SqlSession,无论从性能还是侵入性来说都优于目前方式
  */
 public class WriteLocal{
 
