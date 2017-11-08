@@ -1,7 +1,7 @@
 package cn.bubi.mybatis.balance.write;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 /**

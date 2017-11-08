@@ -8,11 +8,11 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import javax.sql.DataSource;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -206,7 +206,7 @@ public class WriteSqlSession implements SqlSession{
                 useSqlSession = nameDataSourceMapping.get(WriteLocal.getWriteDbName());
             }
 
-            logger.info("router write datasource url : " + useSqlSession.getDataSource().getUrl());
+            //            logger.info("router write datasource url : " + useSqlSession.getDataSource().getUrl());
 
             try {
                 return method.invoke(useSqlSession.getSqlSession(), args);

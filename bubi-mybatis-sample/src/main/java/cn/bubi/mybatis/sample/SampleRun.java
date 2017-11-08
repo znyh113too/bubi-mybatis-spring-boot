@@ -39,7 +39,7 @@ public class SampleRun implements CommandLineRunner{
         demo2.setAge(44);
         demo2.setName("write2:" + Instant.now());
 
-        demoService.testMultiWrite(demo, demo2, false);
+        demoService.testMultiWrite(demo, demo2, true);
 
         //        rollback();
 

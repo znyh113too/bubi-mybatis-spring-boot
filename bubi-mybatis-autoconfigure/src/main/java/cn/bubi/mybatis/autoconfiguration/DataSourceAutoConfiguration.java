@@ -3,13 +3,15 @@ package cn.bubi.mybatis.autoconfiguration;
 import cn.bubi.mybatis.balance.read.ReadDataSourceContent;
 import cn.bubi.mybatis.balance.write.WriteDataSourceContent;
 import cn.bubi.mybatis.properties.DataSourcesProperties;
+import com.atomikos.jdbc.AtomikosSQLException;
+import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolConfiguration;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,20 +34,8 @@ public class DataSourceAutoConfiguration{
      * 默认的连接池
      */
     @Bean("writeDataSourceContent")
-    public WriteDataSourceContent writeDataSourceContent(){
-        List<DataSourcesProperties.WriteContent> writeContentList = dataSourcesProperties.getWrites();
-
-        if (writeContentList == null || writeContentList.isEmpty()) {
-            throw new RuntimeException("write datasource config must not empty");
-        }
-
-        List<WriteDataSourceContent.DbContent> writeDbList = writeContentList.stream().map(writeContent -> {
-            DataSource dataSource = new DataSource(initPoolProperties(writeContent.getConfig()));
-            return new WriteDataSourceContent.DbContent(writeContent.getDbName(), dataSource);
-        }).collect(Collectors.toList());
-
-
-        return new WriteDataSourceContent(writeDbList);
+    public WriteDataSourceContent writeDataSourceContent(AtomikosNonXADataSourceBeanContent content){
+        return new WriteDataSourceContent(content.getBeans());
     }
 
     @Bean("readDataSourceContent")
@@ -57,16 +47,83 @@ public class DataSourceAutoConfiguration{
         }
 
         List<DataSource> dataSourceList = dbConfigs.stream()
-                .map(dbConfig -> new DataSource(initPoolProperties(dbConfig)))
+                .map(dbConfig -> new DataSource(initDefaultPoolProperties(dbConfig)))
                 .collect(Collectors.toList());
 
         return new ReadDataSourceContent(dataSourceList);
     }
 
+    @Bean(initMethod = "init", destroyMethod = "close")
+    public AtomikosNonXADataSourceBeanContent atomikosNonXADataSourceBeans(){
+
+        List<DataSourcesProperties.WriteContent> writeContentList = dataSourcesProperties.getWrites();
+
+        if (writeContentList == null || writeContentList.isEmpty()) {
+            throw new RuntimeException("write datasource config must not empty");
+        }
+
+        List<WriteDataSourceContent.DbContent> writeDbList = writeContentList.stream().map(writeContent -> {
+            javax.sql.DataSource dataSource = initJtaPoolProperties(writeContent.getConfig());
+            return new WriteDataSourceContent.DbContent(writeContent.getDbName(), dataSource);
+        }).collect(Collectors.toList());
+
+        return new AtomikosNonXADataSourceBeanContent(writeDbList);
+    }
+
+    public static class AtomikosNonXADataSourceBeanContent{
+        private List<WriteDataSourceContent.DbContent> beans;
+
+        public AtomikosNonXADataSourceBeanContent(List<WriteDataSourceContent.DbContent> beans){
+            this.beans = beans;
+        }
+
+        public List<WriteDataSourceContent.DbContent> getBeans(){
+            return beans;
+        }
+
+        public void init() throws AtomikosSQLException{
+            for (WriteDataSourceContent.DbContent atomikosNonXADataSourceBean : beans) {
+                ((AtomikosNonXADataSourceBean) atomikosNonXADataSourceBean.getDataSource()).init();
+            }
+        }
+
+        public void close(){
+            for (WriteDataSourceContent.DbContent atomikosNonXADataSourceBean : beans) {
+                ((AtomikosNonXADataSourceBean) atomikosNonXADataSourceBean.getDataSource()).close();
+            }
+        }
+    }
+
     /**
-     * 默认配置，可以根据实际需要将配置提到DbConfig中让使用者通过配置管理
+     * 写默认配置，可以根据实际需要将配置提到DbConfig中让使用者通过配置管理
      */
-    private PoolConfiguration initPoolProperties(DataSourcesProperties.DbConfig dbConfig){
+    private AtomikosNonXADataSourceBean initJtaPoolProperties(DataSourcesProperties.DbConfig dbConfig){
+
+        AtomikosNonXADataSourceBean atomikosNonXADataSourceBean = new AtomikosNonXADataSourceBean();
+        atomikosNonXADataSourceBean.setUniqueResourceName(dbConfig.getUrl() + Instant.now());
+        atomikosNonXADataSourceBean.setDriverClassName("com.mysql.jdbc.Driver");
+        atomikosNonXADataSourceBean.setUrl(dbConfig.getUrl());
+        atomikosNonXADataSourceBean.setUser(dbConfig.getUsername());
+        atomikosNonXADataSourceBean.setPassword(dbConfig.getPassword());
+        atomikosNonXADataSourceBean.setTestQuery("SELECT 1");
+        atomikosNonXADataSourceBean.setPoolSize(20);
+        atomikosNonXADataSourceBean.setMaxPoolSize(200);
+
+        try {
+            atomikosNonXADataSourceBean.init();
+            //  ?
+        } catch (AtomikosSQLException e) {
+            e.printStackTrace();
+        }
+
+        return atomikosNonXADataSourceBean;
+    }
+
+    /**
+     * 读默认配置，可以根据实际需要将配置提到DbConfig中让使用者通过配置管理
+     */
+    private PoolProperties initDefaultPoolProperties(DataSourcesProperties.DbConfig dbConfig){
+
         PoolProperties poolConfiguration = new PoolProperties();
         poolConfiguration.setDriverClassName("com.mysql.jdbc.Driver");
         poolConfiguration.setUsername(dbConfig.getUsername());

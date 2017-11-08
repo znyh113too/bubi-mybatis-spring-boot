@@ -1,5 +1,6 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 cn.bubi.mybatis.autoconfiguration.DataSourceAutoConfiguration,\
+cn.bubi.mybatis.autoconfiguration.JTAAutoConfiguration,\
 cn.bubi.mybatis.autoconfiguration.MybatisAutoConfiguration,\
 cn.bubi.mybatis.autoconfiguration.BubiMybatisAutoConfiguration
