@@ -2,6 +2,7 @@ package cn.bubi.mybatis.balance.write;
 
 import cn.bubi.common.dao.WriteLocal;
 import cn.bubi.mybatis.util.ExceptionUtil;
+import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.Configuration;
@@ -206,7 +207,7 @@ public class WriteSqlSession implements SqlSession{
                 useSqlSession = nameDataSourceMapping.get(WriteLocal.getWriteDbName());
             }
 
-            //            logger.info("router write datasource url : " + useSqlSession.getDataSource().getUrl());
+            logger.info("router write datasource url : " + ((AtomikosNonXADataSourceBean) useSqlSession.getDataSource()).getUrl() + " , method : " + method.getName());
 
             try {
                 return method.invoke(useSqlSession.getSqlSession(), args);

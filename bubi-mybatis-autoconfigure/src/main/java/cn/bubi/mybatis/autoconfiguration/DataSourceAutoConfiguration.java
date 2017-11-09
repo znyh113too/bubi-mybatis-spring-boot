@@ -30,6 +30,7 @@ public class DataSourceAutoConfiguration{
         this.dataSourcesProperties = dataSourcesProperties;
     }
 
+
     /**
      * 默认的连接池
      */
@@ -108,13 +109,6 @@ public class DataSourceAutoConfiguration{
         atomikosNonXADataSourceBean.setTestQuery("SELECT 1");
         atomikosNonXADataSourceBean.setPoolSize(20);
         atomikosNonXADataSourceBean.setMaxPoolSize(200);
-
-        try {
-            atomikosNonXADataSourceBean.init();
-            //  ?
-        } catch (AtomikosSQLException e) {
-            e.printStackTrace();
-        }
 
         return atomikosNonXADataSourceBean;
     }

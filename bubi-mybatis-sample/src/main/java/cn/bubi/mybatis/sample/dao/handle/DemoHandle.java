@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @since 17/11/7 下午4:41.
  */
 @Component
-@WriteToDb("writeDb1")
+@WriteToDb("test1")
 public class DemoHandle extends SimpleEntityHandler<Demo>{
 
 }

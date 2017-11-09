@@ -6,7 +6,6 @@ import cn.bubi.mybatis.sample.service.DemoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import java.time.Instant;
 
@@ -14,7 +13,7 @@ import java.time.Instant;
  * @author xiezhengchao@bubi.cn
  * @since 17/11/7 下午4:27.
  */
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class SampleRun implements CommandLineRunner{
 
     public static void main(String[] args){

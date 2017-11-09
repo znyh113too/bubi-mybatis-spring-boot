@@ -192,10 +192,10 @@ public class ReadSqlSession implements SqlSession{
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable{
-            // 生成安全的sqlSession
+            // 轮询
             ReadSqlSessionFactoryContent.InnerContent innerContent = sqlSessionFactoryContent.getCurrentInnerContent();
 
-            logger.info("router read datasource url : " + innerContent.getDataSource().getUrl());
+            logger.info("router read datasource url : " + innerContent.getDataSource().getUrl() + " , method : " + method.getName());
 
             try (SqlSession sqlSession = innerContent.getSqlSessionFactory().openSession()) {
                 return method.invoke(sqlSession, args);

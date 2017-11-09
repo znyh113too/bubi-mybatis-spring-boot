@@ -48,6 +48,10 @@
             <groupId>cn.bubi.mybatis</groupId>
             <artifactId>bubi-mybatis-dao</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
