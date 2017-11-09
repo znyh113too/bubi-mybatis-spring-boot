@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
+        <artifactId>BubiFrameworkParent</artifactId>
         <groupId>cn.bubi.platform.framework</groupId>
-        <artifactId>SpringbootParent</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
 
     <groupId>cn.bubi.mybatis</groupId>
     <artifactId>bubi-mybatis-spring-boot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0.m1</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -29,6 +29,9 @@
         <pagehelper.version>5.1.2</pagehelper.version>
         <transactions-jdbc.version>3.9.3</transactions-jdbc.version>
         <transaction-api.version>1.1</transaction-api.version>
+        <spring-jdbc.version>5.0.1.RELEASE</spring-jdbc.version>
+        <validation-api.version>2.0.0.Final</validation-api.version>
+        <hibernate-validator.version>6.0.4.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
@@ -73,7 +76,38 @@
                 <artifactId>transactions-jdbc</artifactId>
                 <version>${transactions-jdbc.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring-jdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
