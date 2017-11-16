@@ -109,6 +109,7 @@ public class DataSourceAutoConfiguration{
         atomikosNonXADataSourceBean.setTestQuery("SELECT 1");
         atomikosNonXADataSourceBean.setPoolSize(20);
         atomikosNonXADataSourceBean.setMaxPoolSize(200);
+        atomikosNonXADataSourceBean.setMaxLifetime(1000);
 
         return atomikosNonXADataSourceBean;
     }
