@@ -365,7 +365,7 @@ public class SimpleEntityHandler<T extends Serializable> implements IEntityHandl
         try {
             if (statementCntId == null) {
                 // 插件形式查询
-                PageRowBounds pageRowBounds = new PageRowBounds(page.getFetchBegin(), page.getFetchNum());
+                PageRowBounds pageRowBounds = new PageRowBounds(page.getPageBegin(), page.getFetchNum());
                 pageRowBounds.setCount(true);
                 resultList = readDA.queryListPage(makeSqlId(statementListId), page, pageRowBounds);
                 totalNums = pageRowBounds.getTotal().intValue();
