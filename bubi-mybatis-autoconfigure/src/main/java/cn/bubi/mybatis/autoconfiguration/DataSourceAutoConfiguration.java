@@ -107,7 +107,7 @@ public class DataSourceAutoConfiguration{
         atomikosNonXADataSourceBean.setUser(dbConfig.getUsername());
         atomikosNonXADataSourceBean.setPassword(dbConfig.getPassword());
         atomikosNonXADataSourceBean.setTestQuery("SELECT 1");
-        atomikosNonXADataSourceBean.setPoolSize(20);
+        atomikosNonXADataSourceBean.setPoolSize(dbConfig.getPoolSize());
         atomikosNonXADataSourceBean.setMaxPoolSize(200);
         atomikosNonXADataSourceBean.setMaxLifetime(1000);
 
@@ -131,10 +131,9 @@ public class DataSourceAutoConfiguration{
         poolConfiguration.setValidationQuery("SELECT 1");
         poolConfiguration.setTimeBetweenEvictionRunsMillis(30000);
         poolConfiguration.setMaxActive(100);
-        poolConfiguration.setInitialSize(10);
+        poolConfiguration.setInitialSize(dbConfig.getPoolSize());
         poolConfiguration.setMaxWait(1000);
         poolConfiguration.setMinEvictableIdleTimeMillis(30000);
-        poolConfiguration.setMinIdle(10);
         poolConfiguration.setLogAbandoned(false);
         poolConfiguration.setRemoveAbandoned(true);
         poolConfiguration.setRemoveAbandonedTimeout(60);

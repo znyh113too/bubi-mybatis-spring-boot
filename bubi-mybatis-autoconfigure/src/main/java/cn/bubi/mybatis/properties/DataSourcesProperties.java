@@ -67,6 +67,15 @@ public class DataSourcesProperties{
         private String username;
         private String password;
         private String url;
+        private int poolSize = 5;// 默认池大小
+
+        public int getPoolSize(){
+            return poolSize;
+        }
+
+        public void setPoolSize(int poolSize){
+            this.poolSize = poolSize;
+        }
 
         public String getUsername(){
             return username;
