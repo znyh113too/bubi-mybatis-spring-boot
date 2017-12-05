@@ -157,7 +157,7 @@ public class MybatisAutoConfiguration{
         try {
             return factory.getObject();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("create sqlSessionFactory error:", e);
             throw new RuntimeException(e);
         }
     }
@@ -166,7 +166,7 @@ public class MybatisAutoConfiguration{
      * 启用spring代理过的sqlSession做写数据源，事务托管到spring管理
      */
     @Bean
-    public SqlSession writeSqlSession(@Qualifier("writeDataSourceContent") WriteDataSourceContent writeDataSourceContent) throws Exception{
+    public SqlSession writeSqlSession(@Qualifier("writeDataSourceContent") WriteDataSourceContent writeDataSourceContent){
         final ExecutorType executorType = this.properties.getExecutorType();
 
         List<WriteSqlSessionFactoryContent.SqlSessionContent> sqlSessionContentList = writeDataSourceContent
@@ -189,7 +189,7 @@ public class MybatisAutoConfiguration{
      * 启用自己的sqlSession作读取操作
      */
     @Bean
-    public SqlSession readSqlSession(@Qualifier("readDataSourceContent") ReadDataSourceContent readDataSourceContent) throws Exception{
+    public SqlSession readSqlSession(@Qualifier("readDataSourceContent") ReadDataSourceContent readDataSourceContent){
 
         List<ReadSqlSessionFactoryContent.InnerContent> sqlSessionFactoryList = readDataSourceContent.getDataSourceList().stream()
                 .map(dataSourceRead -> new ReadSqlSessionFactoryContent.InnerContent(dataSourceRead, sqlSessionFactory(dataSourceRead, pageHelp)))

@@ -1,11 +1,16 @@
 package cn.bubi.mybatis.balance.read.queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 带锁的环形队列
  */
 public class CircularBlockingQueue<E> extends CircularQueue<E>{
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 对添加，删除，指针移动操作加锁
      */
@@ -21,7 +26,7 @@ public class CircularBlockingQueue<E> extends CircularQueue<E>{
 
             return true;
         } catch (InterruptedException exp) {
-            exp.printStackTrace();
+            logger.error("found InterruptedException:", exp);
             return false;
         } finally {
             putLock.unlock();
@@ -36,7 +41,7 @@ public class CircularBlockingQueue<E> extends CircularQueue<E>{
             putLock.lockInterruptibly();
             return super.next();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error("found InterruptedException:", e);
             return null;
         } finally {
             putLock.unlock();
@@ -51,7 +56,7 @@ public class CircularBlockingQueue<E> extends CircularQueue<E>{
             putLock.lockInterruptibly();
             return super.prev();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error("found InterruptedException:", e);
             return null;
         } finally {
             putLock.unlock();
@@ -66,7 +71,7 @@ public class CircularBlockingQueue<E> extends CircularQueue<E>{
 
             return super.remove(e);
         } catch (InterruptedException exp) {
-            exp.printStackTrace();
+            logger.error("found InterruptedException:", e);
             return false;
         } finally {
             putLock.unlock();
