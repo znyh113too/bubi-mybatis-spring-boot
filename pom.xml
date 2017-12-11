@@ -12,7 +12,7 @@
 
     <groupId>cn.bubi.mybatis</groupId>
     <artifactId>bubi-mybatis-spring-boot</artifactId>
-    <version>1.0.1.m2</version>
+    <version>1.0.1.m3</version>
     <packaging>pom</packaging>
 
     <modules>
