@@ -16,12 +16,22 @@ public class DataSourcesProperties{
 
     static final String DATA_SOURCES_PREFIX = "bubi.datasource";
 
+    private boolean atomikosWriteFile = false;
+
     @NotNull
     private List<WriteContent> writes = new ArrayList<>();
 
     @NotNull
     private List<DbConfig> reads = new ArrayList<>();
 
+
+    public boolean isAtomikosWriteFile(){
+        return atomikosWriteFile;
+    }
+
+    public void setAtomikosWriteFile(boolean atomikosWriteFile){
+        this.atomikosWriteFile = atomikosWriteFile;
+    }
 
     public List<WriteContent> getWrites(){
         return writes;
