@@ -1,7 +1,6 @@
 ﻿# bubi-mybatis-spring-boot使用说明
 
 标签（空格分隔）： bubi-mybatis-starter datasource jta 
-发布地址 https://www.zybuluo.com/znyh113too/note/945526
 
 ---
  1. [前言](#1)

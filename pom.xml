@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>BubiFrameworkParent</artifactId>
-        <groupId>cn.bubi.platform.framework</groupId>
-        <version>1.0.0.RELEASE</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.3.RELEASE</version>
     </parent>
 
     <groupId>cn.bubi.mybatis</groupId>
     <artifactId>bubi-mybatis-spring-boot</artifactId>
-    <version>1.0.1.m3</version>
+    <version>1.0.0.RELEASE</version>
     <packaging>pom</packaging>
 
     <modules>
