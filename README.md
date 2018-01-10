@@ -17,7 +17,7 @@
 ## <div id="2">概览</div>  ##
 主要介绍实现功能的方法
 
-1项目mybatis配置部分使用开源mybatis-spting-boot作为主要参考(版本号2.0.0-SNAPSHOT)，也就是开源的mybatis功能都是支持的。
+1项目mybatis配置部分使用开源mybatis-spring-boot作为主要参考(版本号2.0.0-SNAPSHOT)，也就是开源的mybatis功能都是支持的。
 
 2多读部分数据源使用org.apache.tomcat.jdbc.pool.DataSource，对应上层采用mybatis原生SqlSession自行封装了线程安全访问，默认行为轮询策略。
 
