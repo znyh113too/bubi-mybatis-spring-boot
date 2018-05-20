@@ -69,7 +69,4 @@ public class DemoHandle extends SimpleEntityHandler<Demo>{
 > 注册到容器中的事务管理器名称为"jtaTransactionManager"，调用者可以直接从容器中获取
 
 
-![结束][1]
-
-  [1]: http://chuantu.biz/t6/134/1510216305x1007318759.jpg
-
+![结束](https://raw.githubusercontent.com/znyh113too/bubi-mybatis-spring-boot/master/picture/16_7tmixo1yysbf6ywpafd7ojj1g.jpg)
