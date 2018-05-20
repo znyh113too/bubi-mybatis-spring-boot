@@ -1,15 +1,17 @@
 package cn.bubi.mybatis.properties;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/7 下午3:44.
  * 载入读写配置源
+ * 
+ * @author xiezhengchao
+ * @since 17/11/7 下午3:44.
  */
 @ConfigurationProperties(prefix = DataSourcesProperties.DATA_SOURCES_PREFIX)
 public class DataSourcesProperties{
@@ -110,6 +112,7 @@ public class DataSourcesProperties{
         public void setUrl(String url){
             this.url = url;
         }
+
     }
 
 }

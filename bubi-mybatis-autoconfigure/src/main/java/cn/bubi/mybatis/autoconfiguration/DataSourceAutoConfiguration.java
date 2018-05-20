@@ -1,24 +1,27 @@
 package cn.bubi.mybatis.autoconfiguration;
 
-import cn.bubi.mybatis.balance.read.ReadDataSourceContent;
-import cn.bubi.mybatis.balance.write.WriteDataSourceContent;
-import cn.bubi.mybatis.properties.DataSourcesProperties;
-import com.atomikos.jdbc.AtomikosSQLException;
-import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
+import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.atomikos.jdbc.AtomikosSQLException;
+import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
+
+import cn.bubi.mybatis.balance.read.ReadDataSourceContent;
+import cn.bubi.mybatis.balance.write.WriteDataSourceContent;
+import cn.bubi.mybatis.properties.DataSourcesProperties;
 
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/8 下午3:15.
  * datasource配置
+ * 
+ * @author xiezhengchao
+ * @since 17/11/8 下午3:15.
  */
 @Configurable
 @EnableConfigurationProperties(DataSourcesProperties.class)
@@ -71,30 +74,6 @@ public class DataSourceAutoConfiguration{
         return new AtomikosNonXADataSourceBeanContent(writeDbList);
     }
 
-    public static class AtomikosNonXADataSourceBeanContent{
-        private List<WriteDataSourceContent.DbContent> beans;
-
-        public AtomikosNonXADataSourceBeanContent(List<WriteDataSourceContent.DbContent> beans){
-            this.beans = beans;
-        }
-
-        public List<WriteDataSourceContent.DbContent> getBeans(){
-            return beans;
-        }
-
-        public void init() throws AtomikosSQLException{
-            for (WriteDataSourceContent.DbContent atomikosNonXADataSourceBean : beans) {
-                ((AtomikosNonXADataSourceBean) atomikosNonXADataSourceBean.getDataSource()).init();
-            }
-        }
-
-        public void close(){
-            for (WriteDataSourceContent.DbContent atomikosNonXADataSourceBean : beans) {
-                ((AtomikosNonXADataSourceBean) atomikosNonXADataSourceBean.getDataSource()).close();
-            }
-        }
-    }
-
     /**
      * 写默认配置，可以根据实际需要将配置提到DbConfig中让使用者通过配置管理
      */
@@ -141,5 +120,28 @@ public class DataSourceAutoConfiguration{
         return poolConfiguration;
     }
 
+    public static class AtomikosNonXADataSourceBeanContent {
+        private List<WriteDataSourceContent.DbContent> beans;
+
+        public AtomikosNonXADataSourceBeanContent(List<WriteDataSourceContent.DbContent> beans) {
+            this.beans = beans;
+        }
+
+        public List<WriteDataSourceContent.DbContent> getBeans() {
+            return beans;
+        }
+
+        public void init() throws AtomikosSQLException {
+            for (WriteDataSourceContent.DbContent atomikosNonXADataSourceBean : beans) {
+                ((AtomikosNonXADataSourceBean) atomikosNonXADataSourceBean.getDataSource()).init();
+            }
+        }
+
+        public void close() {
+            for (WriteDataSourceContent.DbContent atomikosNonXADataSourceBean : beans) {
+                ((AtomikosNonXADataSourceBean) atomikosNonXADataSourceBean.getDataSource()).close();
+            }
+        }
+    }
 
 }

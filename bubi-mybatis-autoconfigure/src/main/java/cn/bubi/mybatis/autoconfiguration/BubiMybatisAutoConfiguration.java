@@ -1,17 +1,19 @@
 package cn.bubi.mybatis.autoconfiguration;
 
-import cn.bubi.common.dao.IDataAccess;
-import cn.bubi.common.dao.MyBatisDataAccessRead;
-import cn.bubi.common.dao.MyBatisDataAccessWrite;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import cn.bubi.common.dao.IDataAccess;
+import cn.bubi.common.dao.MyBatisDataAccessRead;
+import cn.bubi.common.dao.MyBatisDataAccessWrite;
+
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/7 下午3:12.
  * 配置顶层dao所需bean
+ * 
+ * @author xiezhengchao
+ * @since 17/11/7 下午3:12.
  */
 @Configuration
 @AutoConfigureAfter(MybatisAutoConfiguration.class)

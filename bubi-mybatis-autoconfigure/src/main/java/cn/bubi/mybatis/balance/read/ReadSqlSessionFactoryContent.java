@@ -1,15 +1,17 @@
 package cn.bubi.mybatis.balance.read;
 
-import cn.bubi.mybatis.balance.read.queue.CircularBlockingQueue;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
-import java.util.List;
+import cn.bubi.mybatis.balance.read.queue.CircularBlockingQueue;
 
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/8 下午2:40.
  * 提供对SqlSessionFactory的轮询处理
+ * 
+ * @author xiezhengchao
+ * @since 17/11/8 下午2:40.
  */
 public class ReadSqlSessionFactoryContent{
 

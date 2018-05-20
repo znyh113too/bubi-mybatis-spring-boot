@@ -1,6 +1,12 @@
 package cn.bubi.mybatis.balance.read;
 
-import cn.bubi.mybatis.util.ExceptionUtil;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.Configuration;
@@ -10,17 +16,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.sql.Connection;
-import java.util.List;
-import java.util.Map;
+import cn.bubi.mybatis.util.ExceptionUtil;
 
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/7 下午10:49.
  * 提供线程安全的sqlSession
+ * 
+ * @author xiezhengchao
+ * @since 17/11/7 下午10:49.
  */
 public class ReadSqlSession implements SqlSession{
 

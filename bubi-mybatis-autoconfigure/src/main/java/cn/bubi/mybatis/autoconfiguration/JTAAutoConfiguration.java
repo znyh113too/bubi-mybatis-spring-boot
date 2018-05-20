@@ -1,18 +1,20 @@
 package cn.bubi.mybatis.autoconfiguration;
 
-import cn.bubi.mybatis.properties.DataSourcesProperties;
-import com.atomikos.icatch.jta.UserTransactionImp;
-import com.atomikos.icatch.jta.UserTransactionManager;
+import javax.transaction.SystemException;
+
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
-import javax.transaction.SystemException;
+import com.atomikos.icatch.jta.UserTransactionImp;
+import com.atomikos.icatch.jta.UserTransactionManager;
+
+import cn.bubi.mybatis.properties.DataSourcesProperties;
 
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/8 下午7:51.
  */
 @Configurable

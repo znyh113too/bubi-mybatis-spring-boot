@@ -1,11 +1,16 @@
 package cn.bubi.common.dao;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/8 下午4:39.
  * 向db写入的标志
+ * 
+ * @author xiezhengchao
+ * @since 17/11/8 下午4:39.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

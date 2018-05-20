@@ -1,12 +1,13 @@
 package cn.bubi.mybatis.sample.dao.handle;
 
+import org.springframework.stereotype.Component;
+
 import cn.bubi.common.dao.WriteToDb;
 import cn.bubi.common.handler.SimpleEntityHandler;
 import cn.bubi.mybatis.sample.dao.pojo.Demo;
-import org.springframework.stereotype.Component;
 
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/7 下午4:41.
  */
 @Component

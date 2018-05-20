@@ -1,14 +1,15 @@
 package cn.bubi.common.dao;
 
-import com.github.pagehelper.PageRowBounds;
-import org.apache.ibatis.session.SqlSession;
-
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
+import com.github.pagehelper.PageRowBounds;
+
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/8 下午4:49.
  */
 public class MyBatisDataAccessRead implements IDataAccess{

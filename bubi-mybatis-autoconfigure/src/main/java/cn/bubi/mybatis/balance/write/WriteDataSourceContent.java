@@ -1,11 +1,12 @@
 package cn.bubi.mybatis.balance.write;
 
 
-import javax.sql.DataSource;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/8 下午5:37.
  */
 public class WriteDataSourceContent{

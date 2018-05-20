@@ -1,12 +1,13 @@
 package cn.bubi.mybatis.balance.write;
 
-import org.apache.ibatis.session.SqlSession;
-
-import javax.sql.DataSource;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSession;
+
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/8 下午5:57.
  */
 public class WriteSqlSessionFactoryContent{

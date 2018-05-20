@@ -1,29 +1,30 @@
 package cn.bubi.mybatis.sample;
 
-import cn.bubi.mybatis.sample.dao.pojo.Demo;
-import cn.bubi.mybatis.sample.dao.pojo.Demo2;
-import cn.bubi.mybatis.sample.service.DemoService;
+import java.time.Instant;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.Instant;
+import cn.bubi.mybatis.sample.dao.pojo.Demo;
+import cn.bubi.mybatis.sample.dao.pojo.Demo2;
+import cn.bubi.mybatis.sample.service.DemoService;
 
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/7 下午4:27.
  */
 @SpringBootApplication
 public class SampleRun implements CommandLineRunner{
 
-    public static void main(String[] args){
-        SpringApplication.run(SampleRun.class, args);
-    }
-
     private DemoService demoService;
 
     public SampleRun(DemoService demoService){
         this.demoService = demoService;
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(SampleRun.class, args);
     }
 
     @Override

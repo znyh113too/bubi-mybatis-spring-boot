@@ -4,7 +4,7 @@ import cn.bubi.mybatis.sample.dao.pojo.Demo;
 import cn.bubi.mybatis.sample.dao.pojo.Demo2;
 
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/7 下午4:44.
  */
 public interface DemoService{

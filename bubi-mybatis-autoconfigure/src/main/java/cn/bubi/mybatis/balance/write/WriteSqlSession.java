@@ -1,8 +1,15 @@
 package cn.bubi.mybatis.balance.write;
 
-import cn.bubi.common.dao.WriteLocal;
-import cn.bubi.mybatis.util.ExceptionUtil;
-import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.Configuration;
@@ -13,19 +20,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import javax.sql.DataSource;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
+
+import cn.bubi.common.dao.WriteLocal;
+import cn.bubi.mybatis.util.ExceptionUtil;
 
 /**
- * @author xiezhengchao@bubi.cn
- * @since 17/11/8 下午5:28.
  * 针对sqlSessionTemplate做路由的指定写数据源操作
+ * 
+ * @author xiezhengchao
+ * @since 17/11/8 下午5:28.
  */
 public class WriteSqlSession implements SqlSession{
     private SqlSession sqlSessionProxy;

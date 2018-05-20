@@ -1,19 +1,20 @@
 package cn.bubi.mybatis.sample.service;
 
-import cn.bubi.common.handler.Page;
-import cn.bubi.mybatis.sample.dao.handle.DemoHandle;
-import cn.bubi.mybatis.sample.dao.handle.DemoHandle2;
-import cn.bubi.mybatis.sample.dao.pojo.Demo;
-import cn.bubi.mybatis.sample.dao.pojo.Demo2;
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import cn.bubi.common.handler.Page;
+import cn.bubi.mybatis.sample.dao.handle.DemoHandle;
+import cn.bubi.mybatis.sample.dao.handle.DemoHandle2;
+import cn.bubi.mybatis.sample.dao.pojo.Demo;
+import cn.bubi.mybatis.sample.dao.pojo.Demo2;
 
 /**
- * @author xiezhengchao@bubi.cn
+ * @author xiezhengchao
  * @since 17/11/7 下午4:45.
  */
 @Service
