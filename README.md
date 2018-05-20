@@ -2,6 +2,8 @@
 
 标签（空格分隔）： bubi-mybatis-starter datasource jta 
 
+设计思路参考:https://www.jianshu.com/p/508cea940fb8
+
 ---
  1. [前言](#1)
  2. [概览](#2)
